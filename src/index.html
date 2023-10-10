@@ -6,6 +6,115 @@
   <title>Expense accounting</title>
 </head>
 <body>
-  <h1>Expense accounting</h1>
+  <main class="main">
+    <div class="container">
+      <h1>Expense accounting</h1>
+
+      <form class="row gx-3 gy-2 align-items-center justify-content-between">
+        <div class="col-sm-2 d-flex flex-column">
+          <label for="inputName">Наименование</label>
+          <input id="inputName" type="text" placeholder="Название">
+        </div>
+        <div class="col-sm-2 d-flex flex-column">
+          <label for="inputCount">Количество</label>
+          <input id="inputCount" type="number" placeholder="Количество">
+        </div>
+        <div class="col-sm-2 d-flex flex-column">
+          <label for="inputUnit">Еденица</label>
+          <select id="inputUnit">
+            <option selected>Выберите...</option>
+            <option value="штука">штук(а/и)</option>
+            <option value="грамм">грамм(а/и)</option>
+            <option value="бутылка">бутыл(ка/ок)</option>
+            <option value="пачка">пач(ка/ек/ки)</option>
+            <option value="литр">литр(а/ов)</option>
+            <option value="кг">кг</option>
+          </select>
+        </div>
+        <div class="col-sm-2 d-flex flex-column">
+          <label for="inputDate">Дата</label>
+          <input id="inputDate" type="date">
+        </div>
+        <div class="col-sm-2 d-flex flex-column">
+          <label for="inputPrice">Цена</label>
+          <input id="inputPrice" type="number">
+        </div>
+        <div class="col-sm-2 d-flex flex-column">
+          <label for="inputCategory">Категория</label>
+          <select id="inputCategory">
+            <option selected>Выберите...</option>
+            <option value="продукты">продукты</option>
+            <option value="одежда и обувь">одежда и обувь</option>
+            <option value="товары для дома">товары для дома</option>
+            <option value="техника">техника</option>
+            <option value="хоз-товары">хоз-товары</option>
+            <option value="авто-товары">авто-товары</option>
+          </select>
+        </div>
+        <div class="col-auto">
+          <button id="btnAdd">Добавить</button>
+        </div>
+      </form>
+
+      <!-- <table class="table table-bordered table-responsive">
+        <thead>
+          <tr>
+            <th scope="col">Наименование</th>
+            <th scope="col">Количество</th>
+            <th scope="col">Еденицы</th>
+            <th scope="col">Дата покупки</th>
+            <th scope="col">Цена</th>
+            <th scope="col">Категория</th>
+            <th scope="col">Начисленно</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Яблоко</th>
+            <th>2</th>
+            <th>штуки</th>
+            <th>12.12.2022</th>
+            <th>20 руб.</th>
+            <th>Продукты</th>
+            <th>-</th>
+          </tr>
+          <tr>
+            <th scope="row">Телефон</th>
+            <th>1</th>
+            <th>штука</th>
+            <th>12.12.2022</th>
+            <th>200 руб.</th>
+            <th>Техника</th>
+            <th>-</th>
+          </tr>
+          <tr>
+            <th scope="row">Щетка</th>
+            <th>1</th>
+            <th>штука</th>
+            <th>12.12.2022</th>
+            <th>22 руб.</th>
+            <th>Гигиена</th>
+            <th>-</th>
+          </tr>
+        </tbody>
+      </table> -->
+
+      <table class="table table-bordered table-responsive">
+        <thead>
+          <tr>
+            <th scope="col">Наименование</th>
+            <th scope="col">Количество</th>
+            <th scope="col">Еденицы</th>
+            <th scope="col">Дата покупки</th>
+            <th scope="col">Цена</th>
+            <th scope="col">Категория</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+        </tbody>
+      </table>
+    </div>
+  </main>
 </body>
 </html>
