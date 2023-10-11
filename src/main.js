@@ -1,4 +1,5 @@
 import './styles/style.scss';
+import { inputData } from './db';
 import * as bootstrap from 'bootstrap';
 
 const inputName = document.querySelector('#inputName');
@@ -11,33 +12,19 @@ const btnAdd = document.querySelector('#btnAdd');
 
 const tBody = document.querySelector('tbody');
 
-// const inputData = {
-//   name: ['name', 'name2', 'name3'],
-//   count: ['1', '2', '3'],
-//   unit: ['штука', 'штука', 'штука'],
-//   date: ['12.12.2023', '13.12.2023', '14.12.2023'],
-//   price: ['12', '100', '22'],
-//   category: ['продукты', 'продукты', 'продукты'],
-// }
-const inputData = [
-  {name: 'name', count: '1', unit: 'штука', date: '12-12-2023', price: '12', category: 'продукты'},
-  {name: 'name1', count: '2', unit: 'штука', date: '13-12-2023', price: '10', category: 'продукты'},
-  {name: 'name2', count: '3', unit: 'штука', date: '14-12-2023', price: '22', category: 'продукты'},
-]
-
-
 window.onload = function() {
   insertDataToRow();
 }
 
 function getData() {
-  // inputData.name.push(inputName.value);
-  // inputData.count.push(inputCount.value);
-  // inputData.unit.push(inputUnit.value);
-  // inputData.date.push(inputDate.value);
-  // inputData.price.push(inputPrice.value);
-  // inputData.category.push(inputCategory.value);
-  inputData.push({name: `${inputName.value}`, count: `${inputCount.value}`, unit: `${inputUnit.value}`, date: `${inputDate.value}`, price: `${inputPrice.value}`, category: `${inputCategory.value}`});
+  inputData.push({
+    name: `${inputName.value}`,
+    count: `${inputCount.value}`,
+    unit: `${inputUnit.value}`, 
+    date: `${inputDate.value}`, 
+    price: `${inputPrice.value}`, 
+    category: `${inputCategory.value}`
+  });
   console.log(inputData);
 }
 
@@ -51,6 +38,7 @@ function clearInput() {
 }
 
 function insertDataToRow() {
+  tBody.innerHTML = '';
   for (let obj of inputData) {
     let tr = tBody.insertRow();
     tr.insertCell().textContent = obj.name;
@@ -68,17 +56,3 @@ btnAdd.addEventListener('click', (e) => {
   insertDataToRow();
   clearInput();
 });
-
-// function addLayout() {
-//   const createTr = document.createElement('tr');
-  
-//   tBody.insertAdjacentElement('beforeend', createTr);
-//   createTr.classList.add('tr-class');
-
-//   for(let i = 0; i < Object.keys(inputData).length; i++) {
-//     const createTh = document.createElement('th');
-//     createTr.appendChild(createTh);
-//   }
-  
-//   return createTr;
-// }
