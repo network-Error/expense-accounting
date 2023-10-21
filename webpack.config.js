@@ -31,9 +31,19 @@ module.exports = {
     ],
   },
   plugins: [
+    // new HtmlWebpackPlugin({
+    //   template: path.join(__dirname, 'src', 'index.html'),
+    //   filename: 'index.html',
+    // }),
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'src', 'index.html'),
       filename: 'index.html',
+      template: 'src/index.html',
+      chunks: ['main']
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'login.html',
+      template: 'src/pages/login.html',
+      chunks: ['subMain']
     }),
     new FileManagerPlugin({
       events: {
@@ -65,6 +75,9 @@ module.exports = {
           }
         }
       })
-    ]
+    ],
+    splitChunks: {
+      chunks: 'all'
+    },
   }
 };
