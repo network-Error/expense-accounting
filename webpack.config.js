@@ -59,6 +59,7 @@ module.exports = {
   devServer: {
     watchFiles: path.join(__dirname, 'src'),
     hot: true,
+    historyApiFallback: true,
   },
   optimization: {
     minimizer: [

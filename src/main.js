@@ -10,8 +10,41 @@ const inputPrice = document.querySelector('#inputPrice');
 const inputCategory = document.querySelector('#inputCategory');
 const btnAdd = document.querySelector('#btnAdd');
 const tBody = document.querySelector('tbody');
+const main = document.querySelector('.main');
+const login = document.querySelector('.login');
+const btnADM = document.querySelector('.btn-adm');
+const exitBtn = document.querySelector('.exit-btn');
+const loginEmail = document.querySelector('#loginEmail');
+const loginPassword = document.querySelector('#loginPassword');
+const btnLogin = document.querySelector('.btn-login');
 
 connect();
+
+btnLogin.addEventListener('click', () => {
+  let loginE = loginEmail.value;
+  let passwordE = loginPassword.value;
+
+  if (loginE === 'admin@admin.admin' && passwordE === 'admin') {
+    login.classList.add('display-none');
+    main.classList.remove('display-none');
+    loginE = '';
+    passwordE = '';
+  } else {
+    alert('LOGIN ERROR!');
+  }
+})
+
+btnADM.addEventListener('click', () => {
+  login.classList.add('display-none');
+  main.classList.remove('display-none');
+})
+
+exitBtn.addEventListener('click', () => {
+  login.classList.remove('display-none');
+  main.classList.add('display-none');
+  loginEmail.value = '';
+  loginPassword.value = '';
+})
 
 // window.onload = function() {
 //   insertDataToRow();

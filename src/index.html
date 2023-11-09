@@ -6,12 +6,36 @@
   <title>Expense accounting</title>
 </head>
 <body>
-  <main class="main">
+  <section class="login">
+    <div class="container">
+      <form>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Адрес электронной почты</label>
+          <input type="email" class="form-control" id="loginEmail" aria-describedby="emailHelp">
+          <div id="emailHelp" class="form-text">Мы никогда никому не передадим вашу электронную почту.</div>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Пароль</label>
+          <input type="password" class="form-control" id="loginPassword">
+        </div>
+        <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <label class="form-check-label" for="exampleCheck1">Проверить меня</label>
+        </div>
+        <button type="button" class="btn btn-primary btn-login">Отправить</button>
+        <button type="button" class="btn btn-primary btn-adm">АДМИН</button>
+      </form>
+    </div>
+  </section>
+
+  <main class="main display-none">
     <div class="container">
       <h1>Expense accounting</h1>
-      <a href="/login.html">Login</a>
+      <div class="nav">
+        <button class="exit-btn">EXIT</button>
+      </div>
 
-      <form class="row gx-3 gy-2 align-items-center justify-content-between" id="enterData">
+      <form class="enter-data-form row gx-3 gy-2 align-items-center justify-content-between" id="enterData">
         <div class="col-sm-2 d-flex flex-column">
           <label for="inputName">Наименование</label>
           <input id="inputName" type="text" placeholder="Название">
@@ -22,7 +46,7 @@
         </div>
         <div class="col-sm-2 d-flex flex-column">
           <label for="inputUnit">Еденица</label>
-          <select id="inputUnit">
+          <select class="" id="inputUnit">
             <option selected>Выберите...</option>
             <option value="штука">штук(а/и)</option>
             <option value="грамм">грамм(а/и)</option>
@@ -42,7 +66,7 @@
         </div>
         <div class="col-sm-2 d-flex flex-column">
           <label for="inputCategory">Категория</label>
-          <select id="inputCategory">
+          <select class="" id="inputCategory">
             <option selected>Выберите...</option>
             <option value="продукты">продукты</option>
             <option value="одежда и обувь">одежда и обувь</option>
@@ -53,7 +77,7 @@
           </select>
         </div>
         <div class="col-auto">
-          <button id="btnAdd">Добавить</button>
+          <button class="btn btn-primary" id="btnAdd">Добавить</button>
         </div>
       </form>
 
@@ -107,7 +131,7 @@
             <th scope="col">Количество</th>
             <th scope="col">Еденицы</th>
             <th scope="col">Дата покупки</th>
-            <th scope="col">Цена</th>
+            <th scope="col">Цена (BYN)</th>
             <th scope="col">Категория</th>
           </tr>
         </thead>

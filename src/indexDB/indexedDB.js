@@ -11,26 +11,26 @@ export const connect = () => {
   const btnAdd = document.querySelector('#btnAdd');
   const tBody = document.querySelector('tbody');
 
-  const dataSet = [
-    { name: 'name1', count: 'count1', unit: '1', date: '22.12.2023', price: '12', category: 'продукты' },
-    { name: 'name2', count: 'count2', unit: '2', date: '22.12.2023', price: '122', category: 'продукты' },
-    { name: 'name3', count: 'count3', unit: '3', date: '22.12.2023', price: '123', category: 'продукты' },
-  ]
+  const dataSet = []
 
   function showData() {
     const transaction = db.transaction(['expenseStore'], 'readonly');
     const objectStore = transaction.objectStore('expenseStore');
     const cursor = objectStore.openCursor();
 
+    function convertDate(date) {
+      return date.split('-').reverse().join('-');
+    }
+
     cursor.onsuccess = function (e) {
       const res = e.target.result;
-      
       if (res) {
         let tr = tBody.insertRow();
         tr.insertCell().textContent = res.value.name;
         tr.insertCell().textContent = res.value.count;
         tr.insertCell().textContent = res.value.unit;
-        tr.insertCell().textContent = res.value.date;
+        // tr.insertCell().textContent = res.value.date;
+        tr.insertCell().textContent = convertDate(res.value.date);
         tr.insertCell().textContent = res.value.price;
         tr.insertCell().textContent = res.value.category;
         res.continue();
@@ -65,9 +65,19 @@ export const connect = () => {
       objectStore.add(dataSet[i]);
     }
   }
+
+  function clearInput() {
+    inputName.value = '';
+    inputCount.value = '';
+    inputUnit.value = '';
+    inputDate.value = '';
+    inputPrice.value = '';
+    inputCategory.value = '';
+  }
   
   // Add items to DB
-  btnAdd.addEventListener('click', () => {
+  btnAdd.addEventListener('click', (e) => {
+    e.preventDefault();
     const transaction = db.transaction(['expenseStore'], 'readwrite');
     transaction.oncomplete = function (e) {
       console.log('Ok!');
@@ -88,5 +98,6 @@ export const connect = () => {
     objectStore.add(data);
     tBody.innerHTML = '';
     showData();
+    clearInput();
   })
 }
