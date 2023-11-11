@@ -37,6 +37,8 @@ btnLogin.addEventListener('click', () => {
 btnADM.addEventListener('click', () => {
   login.classList.add('display-none');
   main.classList.remove('display-none');
+  window.localStorage.clear();
+  window.localStorage.setItem('login', 'true');
 })
 
 exitBtn.addEventListener('click', () => {
@@ -44,7 +46,19 @@ exitBtn.addEventListener('click', () => {
   main.classList.add('display-none');
   loginEmail.value = '';
   loginPassword.value = '';
+  window.localStorage.setItem('login', 'false');
 })
+
+if (window.localStorage.getItem('login') === 'false') {
+  login.classList.remove('display-none');
+  main.classList.add('display-none');
+  loginEmail.value = '';
+  loginPassword.value = '';
+} else {
+  login.classList.add('display-none');
+  main.classList.remove('display-none');
+}
+// console.log(window.localStorage.getItem('login'))
 
 // window.onload = function() {
 //   insertDataToRow();
