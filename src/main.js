@@ -58,49 +58,47 @@ if (window.localStorage.getItem('login') === 'false') {
   login.classList.add('display-none');
   main.classList.remove('display-none');
 }
-// console.log(window.localStorage.getItem('login'))
 
-// window.onload = function() {
-//   insertDataToRow();
-// }
-
-// function getData() {
-//   inputData.push({
-//     name: `${inputName.value}`,
-//     count: `${inputCount.value}`,
-//     unit: `${inputUnit.value}`, 
-//     date: `${inputDate.value}`, 
-//     price: `${inputPrice.value}`, 
-//     category: `${inputCategory.value}`
-//   });
-//   console.log(inputData);
-// }
-
-// function clearInput() {
-//   inputName.value = '';
-//   inputCount.value = '';
-//   inputUnit.value = '';
-//   inputDate.value = '';
-//   inputPrice.value = '';
-//   inputCategory.value = '';
-// }
-
-// function insertDataToRow() {
-//   tBody.innerHTML = '';
-//   for (let obj of inputData) {
-//     let tr = tBody.insertRow();
-//     tr.insertCell().textContent = obj.name;
-//     tr.insertCell().textContent = obj.count;
-//     tr.insertCell().textContent = obj.unit;
-//     tr.insertCell().textContent = obj.date;
-//     tr.insertCell().textContent = obj.price;
-//     tr.insertCell().textContent = obj.category;
+// window.addEventListener('dblclick', (e) => {
+//   if (e.target.closest('#tBody')) {
+//     const changeInput = `<input type="text" placeholder="enter text">`;
+//     e.target.innerHTML = changeInput;
+//   } else {
+//     console.log(e.target)
 //   }
-// }
+// })
 
-// btnAdd.addEventListener('click', (e) => {
-//   // e.preventDefault();
-//   // getData();
-//   // insertDataToRow();
-//   // clearInput();
-// });
+const tableWrapper = document.querySelector('.table');
+// tableWrapper.addEventListener('click', (e) => {
+
+//   console.log(e.target.textContent)
+//   // let newInput = `<input id="in-wrapp" type="text" class="form-control" value="${e.target.textContent}"><button id="btn-wrapp" class="btn btn-outline-secondary" type="button">+</button>`;
+//   let newInput = `<input id="in-wrapp" type="text" value="${e.target.textContent}"><button id="btn-wrapp" type="button">+</button>`;
+//   e.target.innerHTML = newInput;
+//   let btnAddText = document.getElementById('btn-wrapp');
+
+//   btnAddText.addEventListener('click', (e) => {
+//     e.preventDefault;
+//     console.log(e);
+//   })
+// })
+
+
+tableWrapper.addEventListener('dblclick', (e) => {
+  // console.log(e.target.textContent)
+  const input = document.createElement('input');
+  input.value = e.target.textContent;
+
+  while (e.target.firstChild) {
+    e.target.removeChild(e.target.firstChild)
+  }
+
+  e.target.appendChild(input)
+  input.focus();
+
+  input.addEventListener('blur', () => {
+    e.target.removeChild(input);
+    console.log(input.value);
+  })
+  console.log(input.value)
+})
