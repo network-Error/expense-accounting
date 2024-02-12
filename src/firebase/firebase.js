@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getDatabase, push, ref, onValue } from 'firebase/database';
+import { getDatabase, push, ref, onValue, remove } from 'firebase/database';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCT-pBgCEQnJti8vb10YMxnU9yvtNB2m9g",
@@ -28,12 +28,11 @@ const tBody = document.querySelector('tbody');
 const btnAdd = document.querySelector('#btnAdd');
 
 btnAdd.addEventListener('click', async () => {
-  let dateRev = inputDate.value.split('-').reverse().join('-');
+  let dateReverse = inputDate.value.split('-').reverse().join('-');
   let inputNameValue = inputName.value;
   let inputCountValue = inputCount.value;
   let inputUnitValue = inputUnit.value;
-  // let inputDateValue = inputDate.value;
-  let inputDateValue = dateRev;
+  let inputDateValue = dateReverse;
   let inputPriceValue = inputPrice.value
   let inputCategoryValue = inputCategory.value;
 
@@ -65,8 +64,9 @@ onValue(expenseDB, (snapshot) => {
       let itemID = item[0];
       let itemValue = item[1];
 
-      createNewItemRow(itemValue);
+      createNewItemRow(itemValue, itemID);
     }
+    console.log();
   } else {
     tBody.innerHTML = 'No Elements';
   }
@@ -76,10 +76,15 @@ function clearTable() {
   tBody.innerHTML = '';
 }
 
-function createNewItemRow(item) {
+function createNewItemRow(item, id) {
   let tr = tBody.insertRow();
 
   for (let i = 0; i < item.length; i++) {
     tr.insertCell().textContent += item[i];
   }
+
+  tr.addEventListener('dblclick', () => {
+    let removeElement = ref(db, `expense/${id}`);
+    remove(removeElement);
+  })
 }
