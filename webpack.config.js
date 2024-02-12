@@ -5,7 +5,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 
 module.exports = {
-  entry: path.join(__dirname, 'src', 'main.js'),
+  // entry: path.join(__dirname, 'src', 'main.js'),
+  entry: [path.join(__dirname, 'src', 'main.js'), path.join(__dirname, 'src', './firebase/firebase.js')],
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.[contenthash].js',
@@ -40,11 +41,11 @@ module.exports = {
       template: 'src/index.html',
       chunks: ['main']
     }),
-    new HtmlWebpackPlugin({
-      filename: 'login.html',
-      template: 'src/pages/login.html',
-      chunks: ['subMain']
-    }),
+    // new HtmlWebpackPlugin({
+    //   filename: 'login.html',
+    //   template: 'src/pages/login.html',
+    //   chunks: ['subMain']
+    // }),
     new FileManagerPlugin({
       events: {
         onStart: {
