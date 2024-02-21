@@ -25,7 +25,13 @@ const inputDate = document.querySelector('#inputDate');
 const inputPrice = document.querySelector('#inputPrice');
 const inputCategory = document.querySelector('#inputCategory');
 const tBody = document.querySelector('tbody');
+const tbodyReport = document.querySelector('#tBodyReport');
 const btnAdd = document.querySelector('#btnAdd');
+
+const btnReport = document.querySelector('.report-btn');
+const tableBase = document.querySelector('.table-base');
+const tReport = document.querySelector('.table-report');
+const btnBackTo = document.querySelector('.back-to-btn');
 
 btnAdd.addEventListener('click', async () => {
   let dateReverse = inputDate.value.split('-').reverse().join('-');
@@ -33,7 +39,7 @@ btnAdd.addEventListener('click', async () => {
   let inputCountValue = inputCount.value;
   let inputUnitValue = inputUnit.value;
   let inputDateValue = dateReverse;
-  let inputPriceValue = inputPrice.value
+  let inputPriceValue = inputPrice.value;
   let inputCategoryValue = inputCategory.value;
 
   let inputArray = await [inputNameValue, inputCountValue, inputUnitValue, inputDateValue, inputPriceValue, inputCategoryValue];
@@ -66,7 +72,40 @@ onValue(expenseDB, (snapshot) => {
 
       createNewItemRow(itemValue, itemID);
     }
-    console.log();
+
+    // console.log(itemsArr);
+    
+    let productNameReport = itemsArr[0][1][5];
+    let productCountNameReport = itemsArr.length;
+    let productDateReport = `02-02-2024 - 02-03-2024`;
+
+    let productArrPriceReport = [];
+    for (let j = 0; j < itemsArr.length; j++) {
+      productArrPriceReport.push(Number(itemsArr[j][1][4]));
+    }
+
+    let sumArr = productArrPriceReport.reduce(function(a, b) {
+      return a + b
+    });
+
+    // console.log(sumArr);
+
+    // console.log(productNameReport, productCountNameReport, productDateReport, sumArr);
+
+    function generateReport() {
+      btnReport.addEventListener('click', (e) => {
+        e.preventDefault();
+    
+        btnAdd.setAttribute('disabled', '');
+        tableBase.classList.add('display-none');
+    
+        tReport.classList.remove('display-none');
+        crateNewItemRowReport(productNameReport, productCountNameReport, productDateReport, sumArr);
+      })
+    }
+
+    generateReport()
+    
   } else {
     tBody.innerHTML = 'No Elements';
   }
@@ -88,3 +127,16 @@ function createNewItemRow(item, id) {
     remove(removeElement);
   })
 }
+
+function crateNewItemRowReport(item, item2, item3, item4) {
+  let tr = tbodyReport.insertRow();
+
+  tr.insertCell().textContent = item;
+  tr.insertCell().textContent = item2;
+  tr.insertCell().textContent = item3;
+  tr.insertCell().textContent = item4;
+}
+
+btnBackTo.addEventListener('click', () => {
+  window.location.reload();
+})
